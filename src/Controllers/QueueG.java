@@ -3,6 +3,7 @@ package Controllers;
 import java.util.EmptyStackException;
 
 import Models.NodeGeneric;
+import Models.Persona;
 
 public class QueueG<T> {
 
@@ -62,7 +63,7 @@ public class QueueG<T> {
     }
 
     public T findByname(String clave) {
-        NodeGeneric<T> aux = primero;
+        NodeGeneric<T> aux = this.primero;
         while (aux != null) {
             if (aux.getValue().toString().equalsIgnoreCase(clave)) {
                 return aux.getValue(); 
@@ -71,5 +72,33 @@ public class QueueG<T> {
         }
         return null; 
     }
+
+     public T deleteByName(String nombre) {
+        NodeGeneric<T> actual = this.primero;
+        NodeGeneric<T> anterior = null;
+
+        while (actual != null) {
+            if (actual.getValue().toString().equalsIgnoreCase(nombre)) {
+                T personaEliminada = actual.getValue();
+
+                if (anterior == null) { 
+                    this.primero = actual.getNext();
+                    if (this.primero == null) this.ultimo = null; 
+                } else {
+                    anterior.setNext(actual.getNext());
+                    if (actual == this.ultimo) {
+                        this.ultimo = anterior;
+                    }
+                }
+                this.size--;
+                return personaEliminada;
+            }
+            anterior = actual;
+            actual = actual.getNext();
+        }
+
+        return null;
+    }
+
 
 }

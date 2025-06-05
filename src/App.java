@@ -42,11 +42,11 @@ public class App {
         System.out.println("Persona atendida -> " + colaPersonas.remove());
         colaPersonas.printCola();
         
-        Persona pB = colaPersonas.findByname("Juan");
-        System.out.println("Persona encontrada->"+ pB != null? pB : "Ninguna" );
-        // Persona pE  = colaPersonas.deleteByName("Pedro");
-        // System.out.println("Persona Eliminada ->" + pE != null? pE : "Ninguna" );
-        // colaPersonas.printCola();
+        Persona pB = colaPersonas.findByname("Maria");
+        System.out.println("Persona encontrada -> " + (pB != null ? pB : "No encontrada"));
+        Persona pE = colaPersonas.deleteByName("Pedro");
+        System.out.println("Persona eliminada -> " + (pE != null ? pE : "No eliminada"));
+        colaPersonas.printCola();
 
 
 
